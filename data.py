@@ -14,7 +14,7 @@ def load_all_data(base_path="./data/"):
     try:
         # 1. 모든 CSV 파일 불러오기
         users = pd.read_csv(BASE_PATH / "users.csv")
-        orders = pd.read_csv(bBASE_PATH / "orders.csv")
+        orders = pd.read_csv(BASE_PATH / "orders.csv")
         order_items = pd.read_csv(BASE_PATH / "order_items.csv")
         events = pd.read_csv(BASE_PATH /"events.csv")
         inventory_items = pd.read_csv(BASE_PATH / "inventory_items.csv")
@@ -53,3 +53,4 @@ def load_all_data(base_path="./data/"):
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
 
         return None
+
