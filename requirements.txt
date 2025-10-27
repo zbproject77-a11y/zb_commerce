@@ -12,6 +12,7 @@ seaborn==0.13.2
 plotly==6.3.0
 
 koreanize-matplotlib
+gdown
 
 
 
