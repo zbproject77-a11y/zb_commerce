@@ -13,8 +13,6 @@ plotly==6.3.0
 
 koreanize-matplotlib
 
-# Machine Learning & Stats
-scikit-learn==1.2.2
 
 
 
