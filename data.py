@@ -1,19 +1,23 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path  # 1. pathlib 임포트
 
 # @st.cache_data : 데이터 로딩을 한 번만 실행하여 앱 속도를 향상시킵니다.
 # 여러 페이지에서 이 함수를 호출해도 데이터는 한 번만 읽어옵니다.
 @st.cache_data
 def load_all_data(base_path="./data/"):
     """모든 CSV 파일을 불러오고 2023년 데이터로 필터링합니다."""
+
+    SCRIPT_DIR = Path(__file__).resolve().parent
+    BASE_PATH = SCRIPT_DIR / "data"
     
     try:
         # 1. 모든 CSV 파일 불러오기
-        users = pd.read_csv(base_path + "users.csv")
-        orders = pd.read_csv(base_path + "orders.csv")
-        order_items = pd.read_csv(base_path + "order_items.csv")
-        events = pd.read_csv(base_path + "events.csv")
-        inventory_items = pd.read_csv(base_path + "inventory_items.csv")
+        users = pd.read_csv(BASE_PATH / "users.csv")
+        orders = pd.read_csv(bBASE_PATH / "orders.csv")
+        order_items = pd.read_csv(BASE_PATH / "order_items.csv")
+        events = pd.read_csv(BASE_PATH /"events.csv")
+        inventory_items = pd.read_csv(BASE_PATH / "inventory_items.csv")
   
 
         # 필요 없는 데이터프레임은 여기서 주석 처리하거나 삭제해도 됩니다.
@@ -47,4 +51,5 @@ def load_all_data(base_path="./data/"):
     
     except FileNotFoundError as e:
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
+
         return None
