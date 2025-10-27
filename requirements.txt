@@ -1,4 +1,5 @@
-pip
+python == 3.11.13
+pip == 25.3
 streamlit==1.50.0
 
 # Data Handling & Processing
@@ -26,6 +27,7 @@ statsmodels==0.14.5
 argon2-cffi==25.1.0
 requests==2.32.5
 pydantic==1.10.24
+
 
 
 
