@@ -1,32 +1,21 @@
-pip == 25.3
 streamlit==1.50.0
 retentioneering
 
 # Data Handling & Processing
 pandas==1.5.3
 numpy==1.26.4
-pyarrow==21.0.0
-
-# Database & Files
-aiofiles==22.1.0
-aiosqlite==0.21.0
 
 # Plotting & Visualization
-altair==5.5.0
+
 matplotlib==3.7.2
 seaborn==0.13.2
 plotly==6.3.0
-pydeck==0.9.1
+
 koreanize-matplotlib
 
 # Machine Learning & Stats
 scikit-learn==1.2.2
-statsmodels==0.14.5
 
-# Utility & Web
-argon2-cffi==25.1.0
-requests==2.32.5
-pydantic==1.10.24
 
 
 
