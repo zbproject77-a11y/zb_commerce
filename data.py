@@ -29,7 +29,7 @@ def load_all_data(base_path="./data/"):
   
 
         # 필요 없는 데이터프레임은 여기서 주석 처리하거나 삭제해도 됩니다.
-        products = pd.read_csv(base_path + "products.csv")
+        products = pd.read_csv(BASE_PATH / "products.csv")
         # distribution_centers = pd.read_csv(base_path + "distribution_centers.csv")
 
         # 2. 날짜 컬럼을 datetime 형식으로 변환 (안정적인 필터링을 위해)
@@ -61,6 +61,7 @@ def load_all_data(base_path="./data/"):
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
 
         return None
+
 
 
 
