@@ -13,9 +13,11 @@ def load_all_data(base_path="./data/"):
 
     # 1. Google Drive 파일 ID
     file_id = "1dHISvZevK5lviDZr49ujrg1Ej9z9_81m"
+    item_id = '1zMuGoJAMR5gQDJUwTdVGnRIGW5bpQ2pb'
 
     # 2. 직접 다운로드 URL로 변환
     url = f'https://drive.google.com/uc?id={file_id}&export=download'
+    item_url = f'https://drive.google.com/uc?id={item_id}&export=download'
     
     try:
         # 1. 모든 CSV 파일 불러오기
@@ -23,7 +25,7 @@ def load_all_data(base_path="./data/"):
         orders = pd.read_csv(BASE_PATH / "orders.csv")
         order_items = pd.read_csv(BASE_PATH / "order_items.csv")
         events = pd.read_csv(url)
-        inventory_items = pd.read_csv(BASE_PATH / "inventory_items.csv")
+        inventory_items = pd.read_csv(item_url)
   
 
         # 필요 없는 데이터프레임은 여기서 주석 처리하거나 삭제해도 됩니다.
@@ -59,6 +61,7 @@ def load_all_data(base_path="./data/"):
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
 
         return None
+
 
 
 
