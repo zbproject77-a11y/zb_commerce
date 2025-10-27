@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path  # 1. pathlib 임포트
+import gdown  # 1. gdown 라이브러리 임포트
+import os     # 2. 파일 삭제를 위해 임포트
 
 # @st.cache_data : 데이터 로딩을 한 번만 실행하여 앱 속도를 향상시킵니다.
 # 여러 페이지에서 이 함수를 호출해도 데이터는 한 번만 읽어옵니다.
@@ -24,8 +26,28 @@ def load_all_data(base_path="./data/"):
         users = pd.read_csv(BASE_PATH /"users.csv")
         orders = pd.read_csv(BASE_PATH / "orders.csv")
         order_items = pd.read_csv(BASE_PATH / "order_items.csv")
-        events = pd.read_csv(url)
-        inventory_items = pd.read_csv(item_url)
+       # --- 2. Google Drive 대용량 파일 불러오기 ---
+        
+        # (A) events.csv (375M)
+        event_file_id = "1dHISvZevK5lviDZr49ujrg1Ej9z9_81m"
+        event_output_path = "temp_events.csv"  # 임시 파일명
+        
+        # gdown으로 파일 다운로드 (대용량 파일 경고 무시)
+        st.info("대용량 파일 'events.csv'를 다운로드 중입니다...")
+        gdown.download(id=event_file_id, output=event_output_path, quiet=False)
+        events = pd.read_csv(event_output_path)
+        os.remove(event_output_path) # 다운로드 후 임시 파일 삭제
+        st.info("'events.csv' 로드 완료.")
+
+        # (B) inventory_items.csv
+        item_file_id = '1zMuGoJAMR5gQDJUwTdVGnRIGW5bpQ2pb'
+        item_output_path = "temp_items.csv" # 임시 파일명
+        
+        st.info("대용량 파일 'inventory_items.csv'를 다운로드 중입니다...")
+        gdown.download(id=item_file_id, output=item_output_path, quiet=False)
+        inventory_items = pd.read_csv(item_output_path)
+        os.remove(item_output_path) # 다운로드 후 임시 파일 삭제
+        st.info("'inventory_items.csv' 로드 완료.")
   
 
         # 필요 없는 데이터프레임은 여기서 주석 처리하거나 삭제해도 됩니다.
@@ -61,6 +83,7 @@ def load_all_data(base_path="./data/"):
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
 
         return None
+
 
 
 
