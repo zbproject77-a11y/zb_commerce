@@ -10,10 +10,16 @@ def load_all_data(base_path="./data/"):
 
     SCRIPT_DIR = Path(__file__).resolve().parent
     BASE_PATH = SCRIPT_DIR / "data"
+
+    # 1. Google Drive 파일 ID
+    file_id = "1dHISvZevK5lviDZr49ujrg1Ej9z9_81m"
+
+    # 2. 직접 다운로드 URL로 변환
+    url = f'https://drive.google.com/uc?id={file_id}&export=download'
     
     try:
         # 1. 모든 CSV 파일 불러오기
-        users = pd.read_csv("https://drive.google.com/file/d/1dHISvZevK5lviDZr49ujrg1Ej9z9_81m/view?usp=sharing")
+        users = pd.read_csv(url)
         orders = pd.read_csv(BASE_PATH / "orders.csv")
         order_items = pd.read_csv(BASE_PATH / "order_items.csv")
         events = pd.read_csv(BASE_PATH /"events.csv")
@@ -53,5 +59,6 @@ def load_all_data(base_path="./data/"):
         st.error(f"데이터 파일 로딩 중 오류 발생: {e}")
 
         return None
+
 
 
